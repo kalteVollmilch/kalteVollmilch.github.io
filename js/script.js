@@ -62,6 +62,10 @@ window.onload = function() {
 
     let buttonTemplate = document.createElement("button");
     buttonTemplate.classList.add("copyToClipboardButton");
+    buttonTemplate.classList.add("btn");
+    buttonTemplate.classList.add("btn-outline-dark");
+    buttonTemplate.classList.add("m-1");
+    buttonTemplate.type = "button";
     buttonTemplate.dataset.content = "";
 
     buttons.forEach(function(buttonGroup){
@@ -101,7 +105,27 @@ function addButtonEventListeners(toastList) {
 
     document.querySelectorAll(".copyToClipboardButton").forEach(function(button) {
         button.addEventListener("click", function(event) {
-            navigator.clipboard.writeText(button.dataset.content).then(function(){successToast.show();}, function(){errorToast.show();})
+            let textarea = document.getElementById("lastCopiedText");
+            navigator.clipboard.writeText(button.dataset.content)
+            .then(
+                function() {
+                    successToast.show();
+                    textarea.textContent = button.dataset.content;
+                },
+                function(){
+                    errorToast.show();
+                    textarea.textContent = "-- ERROR COPYING TEXT --";
+            });
+        });
+
+        button.addEventListener("mouseover", function(event) {
+            let textarea = document.getElementById("textToCopyPreview");
+            textarea.textContent = button.dataset.content;
+        });
+
+        button.addEventListener("mouseleave", function(event) {
+            let textarea = document.getElementById("textToCopyPreview");
+            textarea.textContent = '';
         });
     });
 }
