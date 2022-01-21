@@ -50,6 +50,15 @@ const buttons = [
                 text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/tsw2-roadmap-2022"
             }
         ]
+    },
+    {
+        heading: "Festival of Rail",
+        buttons: [
+            {
+                caption: "Schedule Link",
+                text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/festival-of-rail-announced-tsw"
+            }
+        ]
     }
 
 ]
