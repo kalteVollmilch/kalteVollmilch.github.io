@@ -59,6 +59,19 @@ const buttons = [
                 text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/festival-of-rail-announced-tsw"
             }
         ]
+    },
+    {
+        heading: "Steam",
+        buttons: [
+            {
+                caption: "no !drop",
+                text: "writing \"!drop\" doesn't do anything, you get emotes by simply watching the stream"
+            },
+            {
+                caption: "No points",
+                text: "Watching this stream will not give you any points, only emotes"
+            }
+        ]
     }
 
 ]
