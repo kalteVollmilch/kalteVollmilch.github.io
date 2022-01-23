@@ -70,6 +70,10 @@ const buttons = [
             {
                 caption: "No points",
                 text: "Watching this stream will not give you any points, only emotes"
+            },
+            {
+                caption: "repeating !drop gets you a timeout",
+                text: "Please note: Repeatedly writing \"!drop\" will get you timeouted for 12hrs"
             }
         ]
     }
