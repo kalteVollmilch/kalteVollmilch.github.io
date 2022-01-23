@@ -73,7 +73,7 @@ const buttons = [
             },
             {
                 caption: "repeating !drop gets you a timeout",
-                text: "Please note: Repeatedly writing \"!drop\" will get you timeouted for 12hrs"
+                text: "Please note: Writing \"!drop\" will get you timeouted for 12hrs"
             }
         ]
     }
