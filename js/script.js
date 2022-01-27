@@ -47,7 +47,7 @@ const buttons = [
         buttons: [
             {
                 caption: "Roadmap Link",
-                text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/tsw2-roadmap-2022"
+                text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/tsw2-roadmap-25-january-2022"
             }
         ]
     },
