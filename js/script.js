@@ -3,6 +3,10 @@ const buttons = [
         heading: "Suggestions",
         buttons: [
             {
+                caption: "Content Suggestions - LINK",
+                text: "https://forums.dovetailgames.com/forums/suggestions.75/"
+            },
+            {
                 caption: "Content Suggestions",
                 text: "Please make all content suggestions to https://forums.dovetailgames.com/forums/suggestions.75/"
             },
@@ -14,6 +18,32 @@ const buttons = [
                 caption: "PLEASE LISTEN",
                 text: "OK FOLKS PLEASE LISTEN !! We love all the content suggestions, BUT they'll all get lost from chat, you really need to put them all on the forums, this something you need to do, we can't log them all."
             }
+        ]
+    },
+    {
+        heading: "Roadmap",
+        buttons: [
+            {
+                caption: "Last Roadmap",
+                text: getPreviousRoadmapDate(),
+            },
+            {
+                caption: "Current Roadmap",
+                text: getCurrentRoadmapDate(),
+            },
+            {
+                caption: "Next Roadmap",
+                text: getNextRoadmapDate(),
+            }
+        ]
+    },
+    {
+        heading: "Creators Club",
+        buttons: [
+            {
+                caption: "Link",
+                text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/start-creating-with-tsw-2",
+            },
         ]
     },
     {
@@ -39,24 +69,6 @@ const buttons = [
             {
                 caption: "TS 2022 Announcement",
                 text: "https://forums.dovetailgames.com/threads/announcing-train-simulator-2022.44829/"
-            }
-        ]
-    },
-    {
-        heading: "Roadmap",
-        buttons: [
-            {
-                caption: "Roadmap Link",
-                text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/tsw2-roadmap-8-february-2022"
-            }
-        ]
-    },
-    {
-        heading: "Festival of Rail",
-        buttons: [
-            {
-                caption: "Schedule Link",
-                text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/festival-of-rail-announced-tsw"
             }
         ]
     },
@@ -154,4 +166,58 @@ function addButtonEventListeners(toastList) {
             textarea.textContent = '';
         });
     });
+}
+
+function join(t, a, s) {
+    function format(m) {
+       let f = new Intl.DateTimeFormat('en', m);
+       return f.format(t);
+    }
+    return a.map(format).join(s);
+ }
+
+function getWeekNumber(date) {
+    date = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+    date.setUTCDate(date.getUTCDate() + 4 - (date.getUTCDay()||7));
+    var yearStart = new Date(Date.UTC(date.getUTCFullYear(),0,1));
+    var weekNo = Math.ceil((((date - yearStart) / 86400000) + 1)/7);
+    return [date.getUTCFullYear(), weekNo];
+}
+
+function getPreviousRoadmapDate() {
+    let currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() - 14);
+    return getLastRoadmapDate(currentDate);
+}
+
+function getNextRoadmapDate() {
+    let currentDate = new Date();
+    currentDate.setDate(currentDate.getDate() + 14);
+    return getLastRoadmapDate(currentDate);
+}
+
+function getCurrentRoadmapDate() {
+    let currentDate = new Date();
+    return getLastRoadmapDate(currentDate);
+}
+
+function getLastRoadmapDate(date) {
+    let currentDay = date.getDay();
+    let currentWeekNumber = getWeekNumber(date);
+
+    // get last odd weeknumber
+    if  (currentWeekNumber % 2 === 0) {
+        date.setDate(date.getDate() - 7);
+    }
+
+    // weeknumber of last thursday
+    if (currentDay === 1) {
+        date.setDate(date.getDate() - 13);
+    }
+    else if (currentDay > 2) {
+        date.setDate(date.getDate() - (currentDay - 2));
+    }
+
+    let dateOptions = [{day: 'numeric'}, {month: 'long'}, {year: 'numeric'}];
+    return `https://live.dovetailgames.com/live/train-sim-world/articles/article/tsw2-roadmap-${join(date, dateOptions, '-').toLowerCase()}`;
 }
