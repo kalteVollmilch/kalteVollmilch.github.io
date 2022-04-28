@@ -1,6 +1,6 @@
 const buttons = [
     {
-        heading: "Suggestions",
+        heading: "TSW Suggestions",
         buttons: [
             {
                 caption: "Content Suggestions - LINK",
@@ -21,16 +21,7 @@ const buttons = [
         ]
     },
     {
-        heading: "Current Roadmap",
-        buttons: [
-            {
-                caption: "Link",
-                text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/tsw2-roadmap-5-april-2022",
-            }
-        ]
-    },
-    {
-        heading: "WRONG/BROKEN - Roadmap, auto-generated",
+        heading: "Roadmap links - auto-generated - 4 week rhythm",
         buttons: [
             {
                 caption: "Last Roadmap",
@@ -47,20 +38,15 @@ const buttons = [
         ]
     },
     {
-        heading: "Creators Club",
+        heading: "Support / Tech Support",
         buttons: [
+            {
+                caption: "Link + some text",
+                text: "Are you experiencing issues with a DTG product? File a support ticket at Support desk ===> https://dovetailgames.freshdesk.com/support/home"
+            },
             {
                 caption: "Link",
-                text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/start-creating-with-tsw-2",
-            },
-        ]
-    },
-    {
-        heading: "Support",
-        buttons: [
-            {
-                caption: "Support Link",
-                text: "Are you experiencing issues with a DTG product? File a support ticket at Support desk ===> https://dovetailgames.freshdesk.com/support/home"
+                text: "https://dovetailgames.freshdesk.com/support/home"
             }
         ]
     },
@@ -68,16 +54,38 @@ const buttons = [
         heading: "TS Stream",
         buttons: [
             {
-                caption: "This is a TS 2021 Stream",
-                text: "Please note: This is a TS2021 stream. The streamer will not be answering questions regarding TSW2 content"
-            },
-            {
                 caption: "This is a TS 2022 Stream",
                 text: "Please note: This is a TS2022 stream. The streamer will not be answering questions regarding TSW2 content"
             },
             {
                 caption: "TS 2022 Announcement",
                 text: "https://forums.dovetailgames.com/threads/announcing-train-simulator-2022.44829/"
+            },
+            {
+                caption: "TS Classic Announcement",
+                text: "https://live.dovetailgames.com/live/train-simulator/articles/article/ts-classic-out-now"
+            }
+        ]
+    },
+    {
+        heading: "Creators Club",
+        buttons: [
+            {
+                caption: "Introduction Article",
+                text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/start-creating-with-tsw-2",
+            },
+            {
+                caption: "Startpage",
+                text: "https://creatorsclub.dovetailgames.com/"
+            }
+        ]
+    },
+    {
+        heading: "General Stuff",
+        buttons: [
+            {
+                caption: "No Caps",
+                text: "Please don't use all caps"
             }
         ]
     },
@@ -194,14 +202,12 @@ function getWeekNumber(date) {
 }
 
 function getPreviousRoadmapDate() {
-    let currentDate = new Date();
-    currentDate.setDate(currentDate.getDate() - 14);
+    let currentDate = new Date(new Date().setDate(new Date().getDate() - 28));
     return getLastRoadmapDate(currentDate);
 }
 
 function getNextRoadmapDate() {
-    let currentDate = new Date();
-    currentDate.setDate(currentDate.getDate() + 14);
+    let currentDate = new Date(new Date().setDate(new Date().getDate() + 28));
     return getLastRoadmapDate(currentDate);
 }
 
@@ -212,16 +218,15 @@ function getCurrentRoadmapDate() {
 
 function getLastRoadmapDate(date) {
     let currentDay = date.getDay();
-    let currentWeekNumber = getWeekNumber(date);
+    let currentWeekNumber = getWeekNumber(date)[1];
 
-    // get last odd weeknumber
-    if  (currentWeekNumber % 2 === 0) {
-        date.setDate(date.getDate() - 7);
-    }
+    // get last weeknumber which is a multiple of (2 + 4x) -> 2, 6, 10, 14..
+    let weekOfInterval = (currentWeekNumber + 2 ) % 4;
+    date.setDate(date.getDate() - (weekOfInterval * 7));
 
     // weeknumber of last thursday
     if (currentDay === 1) {
-        date.setDate(date.getDate() - 13);
+        date.setDate(date.getDate() - 27);
     }
     else if (currentDay > 2) {
         date.setDate(date.getDate() - (currentDay - 2));
