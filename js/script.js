@@ -38,6 +38,19 @@ const buttons = [
         ]
     },
     {
+        heading: "Spirit of Steam",
+        buttons: [
+            {
+                caption: "Arriving soon article",
+                text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/spirit-of-steam-arriving-soon"
+            },
+            {
+                caption: "DevBlog (YouTube)",
+                text: "https://www.youtube.com/watch?v=x-4YskHkDsA"
+            }
+        ]
+    },
+    {
         heading: "Support / Tech Support",
         buttons: [
             {
