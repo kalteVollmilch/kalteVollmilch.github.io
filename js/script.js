@@ -233,8 +233,8 @@ function getLastRoadmapDate(date) {
     let currentDay = date.getDay();
     let currentWeekNumber = getWeekNumber(date)[1];
 
-    // get last weeknumber which is a multiple of (2 + 4x) -> 2, 6, 10, 14..
-    let weekOfInterval = (currentWeekNumber + 2 ) % 4;
+    // get last weeknumber which is a multiple of (1 + 4x) -> 1, 7, 11, 15..
+    let weekOfInterval = (currentWeekNumber + 1 ) % 4;
     date.setDate(date.getDate() - (weekOfInterval * 7));
 
     // weeknumber of last thursday
