@@ -13,6 +13,10 @@ const buttons = [
             {
                 caption: "Q&A Link",
                 text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/tsw2-roadmap-7-june-2022"
+            },
+            {
+                caption: "Preview Dates",
+                text: "Tuesday, August 16th – Introduction to Train Sim World 3, and Q&A || Thursday, August 18th – Kassel – Würzburg Preview || Tuesday, August 23rd – Training Center || Thursday, August 25th – Southeastern High Speed Extended Preview || Thursday, September 1st – Cajon Pass Preview"
             }
         ]
     },
