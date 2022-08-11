@@ -1,40 +1,61 @@
 const buttons = [
     {
-        heading: "TSW Suggestions",
+        heading: "TSW3",
         buttons: [
             {
-                caption: "Content Suggestions - LINK",
-                text: "https://forums.dovetailgames.com/forums/suggestions.75/"
+                caption: "Release Date",
+                text: "Release Date for TSW 3 is 06th Sept. Deluxe Edition can be played 4 days early, 02nd Sept."
             },
             {
-                caption: "Content Suggestions",
-                text: "Please make all content suggestions to https://forums.dovetailgames.com/forums/suggestions.75/"
+                caption: "FAQ Link",
+                text: "https://dovetailgames.freshdesk.com/support/solutions/articles/80001033452-train-sim-world-3-faq"
             },
             {
-                caption: "Angry Content Suggestions",
-                text: "Are you ? Will you ? Can you ? Have you thought of ? Put all your suggestions on the forums and give details why you think it should be made and what you feel is so special about it.",
-            },
-            {
-                caption: "PLEASE LISTEN",
-                text: "OK FOLKS PLEASE LISTEN !! We love all the content suggestions, BUT they'll all get lost from chat, you really need to put them all on the forums, this something you need to do, we can't log them all."
+                caption: "Q&A Link",
+                text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/tsw2-roadmap-7-june-2022"
             }
         ]
     },
     {
-        heading: "Roadmap links - auto-generated - 4 week rhythm",
+        heading: "Pricing",
         buttons: [
             {
-                caption: "Last Roadmap",
-                text: getPreviousRoadmapDate(),
+                caption: "Deluxe Edition",
+                text: "Deluxe Edition (Pre-order Discount): £49.99(£44.99) | €59.99(€53.99) | $59.99 ($53.99)"
             },
             {
-                caption: "Current Roadmap",
-                text: getCurrentRoadmapDate(),
+                caption: "Standard Edition",
+                text: "Standard Edition: £39.99 | €44.99 | $49.99"
             },
             {
-                caption: "Next Roadmap",
-                text: getNextRoadmapDate(),
+                caption: "UK Starter Pack",
+                text: "UK Starter Pack: £29.99 | €35.99 | $39.99"
+            },
+            {
+                caption: "US Starter Pack",
+                text: "US Starter Pack: £29.99 | €35.99 | $39.99"
+            },
+            {
+                caption: "German Starter Pack",
+                text: "German Starter Pack: £29.99 | €35.99 | $39.99"
+            },
+            {
+                caption: "Spirit of Steam Starter Pack",
+                text: "Spirit of Steam Starter Pack: £29.99 | €35.99 | $39.99"
             }
+        ]
+    },
+    {
+        heading: "Roadmap links - TSW3",
+        buttons: [
+            {
+                caption: "Part 1",
+                text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/tsw-roadmap-10-08-22",
+            },
+            {
+                caption: "Part 2",
+                text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/tsw-roadmap-part-2-10-08",
+            },
         ]
     },
     {
@@ -60,6 +81,27 @@ const buttons = [
             {
                 caption: "Link",
                 text: "https://dovetailgames.freshdesk.com/support/home"
+            }
+        ]
+    },
+    {
+        heading: "TSW Suggestions",
+        buttons: [
+            {
+                caption: "Content Suggestions - LINK",
+                text: "https://forums.dovetailgames.com/forums/suggestions.75/"
+            },
+            {
+                caption: "Content Suggestions",
+                text: "Please make all content suggestions to https://forums.dovetailgames.com/forums/suggestions.75/"
+            },
+            {
+                caption: "Angry Content Suggestions",
+                text: "Are you ? Will you ? Can you ? Have you thought of ? Put all your suggestions on the forums and give details why you think it should be made and what you feel is so special about it.",
+            },
+            {
+                caption: "PLEASE LISTEN",
+                text: "OK FOLKS PLEASE LISTEN !! We love all the content suggestions, BUT they'll all get lost from chat, you really need to put them all on the forums, this something you need to do, we can't log them all."
             }
         ]
     },
