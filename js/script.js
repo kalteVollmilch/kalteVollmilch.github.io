@@ -15,8 +15,12 @@ const buttons = [
                 text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/tsw2-roadmap-7-june-2022"
             },
             {
-                caption: "Preview Dates",
-                text: "Tuesday, August 16th – Introduction to Train Sim World 3, and Q&A || Thursday, August 18th – Kassel – Würzburg Preview || Tuesday, August 23rd – Training Center || Thursday, August 25th – Southeastern High Speed Extended Preview || Thursday, September 1st – Cajon Pass Preview"
+                caption: "Preview Dates - Pt. 1",
+                text: "Preview Dates: Thursday, August 18th – Kassel – Würzburg Preview || Tuesday, August 23rd – Training Center"
+            },
+            {
+                caption: "Preview Dates - Pt. 2",
+                text: "Thursday, August 25th – Southeastern High Speed Extended Preview || Thursday, September 1st – Cajon Pass Preview"
             }
         ]
     },
@@ -46,6 +50,10 @@ const buttons = [
             {
                 caption: "Spirit of Steam Starter Pack",
                 text: "Spirit of Steam Starter Pack: £29.99 | €35.99 | $39.99"
+            },
+            {
+                caption: "Summary",
+                text: "Prices: Deluxe Edition (Pre-order Discount): £49.99(£44.99) | €59.99(€53.99) | $59.99 ($53.99) || Standard Edition: £39.99 | €44.99 | $49.99 || Starter Packs: £29.99 | €35.99 | $39.99"
             }
         ]
     },
