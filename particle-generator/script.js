@@ -24,10 +24,12 @@ function generateParticles() {
   let particlesInput = document.getElementById("input_count_particles");
   let heightInput = document.getElementById("input_height");
   let widthInput = document.getElementById("input_width");
+  let fillRatioInput = document.getElementById("fillRatioInput");
 
   let particlesCount = particlesInput.value;
   let height = heightInput.value;
   let width = widthInput.value;
+  const fillRatio = fillRatioInput.value;
 
   const sizes = getParticleSizeDistributions();
   const colors = getParticleColorDistributions();
@@ -43,7 +45,8 @@ function generateParticles() {
     sizes,
     maxSizeDistributionValue,
     colors,
-    maxColorDistributionValue
+    maxColorDistributionValue,
+    fillRatio
   );
 }
 
@@ -60,7 +63,8 @@ function renderParticles(
   sizes,
   maxSizeDistributionValue,
   colors,
-  maxColorDistributionValue
+  maxColorDistributionValue,
+  fillRatio
 ) {
   for (let i = 0; i < particleCount; i++) {
     let particle = generateBaseParticle();
@@ -84,7 +88,7 @@ function renderParticles(
     );
 
     particle = setParticleSize(particle, particleSize, particleSize);
-    particle = setParticleColor(particle, particleColor);
+    particle = setParticleColor(particle, particleColor, fillRatio);
     particle = positionParticle(containerWidth, containerHeigt, particle);
     container.appendChild(particle);
   }
@@ -92,7 +96,7 @@ function renderParticles(
 
 function getSizeFromDistribution(sizeDistrubution, index) {
   for (const particleSizeInput of sizeDistrubution) {
-    if (particleSizeInput.maxValue > index) {
+    if (particleSizeInput.maxValue >= index) {
       const sizeInput = document.getElementById(particleSizeInput.sizeInput);
       if (!sizeInput) return PARTICLE_SIZE_BASE;
 
@@ -103,7 +107,7 @@ function getSizeFromDistribution(sizeDistrubution, index) {
 
 function getColorFromDistribution(colorDistrubution, index) {
   for (const particleColorInput of colorDistrubution) {
-    if (particleColorInput.maxValue > index) {
+    if (particleColorInput.maxValue >= index) {
       const colorInput = document.getElementById(particleColorInput.colorInput);
       if (!colorInput) return "#284695";
 
@@ -144,8 +148,12 @@ function setParticleSize(particle, width, height) {
   return particle;
 }
 
-function setParticleColor(particle, color) {
+function setParticleColor(particle, color, fillRatio) {
   particle.style.borderColor = color;
+
+  if (getRandomInteger(1, 99) / 100 <= fillRatio)
+    particle.style.background = color;
+
   return particle;
 }
 
@@ -190,15 +198,17 @@ function getParticleColorDistributions() {
   return colors;
 }
 
-function addParticleSizeInput() {
+function addParticleSizeInput(size = null, frequency = null) {
   let sizeInputsCointainer = document.getElementById("size-frequency-inputs");
   if (!sizeInputsCointainer) return;
 
   let id = uid();
   let sizeInputId = generateSizeInputId(id);
-  sizeInputsCointainer.appendChild(generateParticleSizeInput(sizeInputId));
   sizeInputsCointainer.appendChild(
-    generateParticleFrequencyInput(sizeInputId, id)
+    generateParticleSizeInput(sizeInputId, size)
+  );
+  sizeInputsCointainer.appendChild(
+    generateParticleFrequencyInput(sizeInputId, id, frequency)
   );
   sizeInputsCointainer.appendChild(generateDeleteButton());
 }
@@ -207,12 +217,12 @@ function generateSizeInputId(uid) {
   return "size-input-" + uid;
 }
 
-function generateParticleSizeInput(inputId) {
+function generateParticleSizeInput(inputId, size) {
   let container = document.createElement("div");
   let input = document.createElement("input");
   input.id = inputId;
   input.setAttribute("type", "number");
-  input.setAttribute("value", PARTICLE_SIZE_BASE);
+  input.setAttribute("value", size ?? PARTICLE_SIZE_BASE);
 
   let label = document.createElement("label");
   label.setAttribute("for", inputId);
@@ -223,7 +233,7 @@ function generateParticleSizeInput(inputId) {
   return container;
 }
 
-function generateParticleFrequencyInput(sizeId, uid) {
+function generateParticleFrequencyInput(sizeId, uid, frequency) {
   let container = document.createElement("div");
   let input = document.createElement("input");
   let inputId = "frequency-size-" + uid;
@@ -231,7 +241,7 @@ function generateParticleFrequencyInput(sizeId, uid) {
   input.setAttribute("type", "range");
   input.setAttribute("min", "1");
   input.setAttribute("max", "100");
-  input.setAttribute("value", "100");
+  input.setAttribute("value", frequency ?? "100");
   input.dataset.size_input = sizeId;
 
   let label = document.createElement("label");
@@ -243,15 +253,17 @@ function generateParticleFrequencyInput(sizeId, uid) {
   return container;
 }
 
-function addParticleColorInput() {
+function addParticleColorInput(color = null, frequency = null) {
   let colorInputsCointainer = document.getElementById("color-frequency-inputs");
   if (!colorInputsCointainer) return;
 
   let id = uid();
   let colorInputId = generateColorInputId(id);
-  colorInputsCointainer.appendChild(generateParticleColorInput(colorInputId));
   colorInputsCointainer.appendChild(
-    generateParticleColorFrequencyInput(colorInputId, id)
+    generateParticleColorInput(colorInputId, color)
+  );
+  colorInputsCointainer.appendChild(
+    generateParticleColorFrequencyInput(colorInputId, id, frequency)
   );
   colorInputsCointainer.appendChild(generateDeleteButton());
 }
@@ -260,12 +272,12 @@ function generateColorInputId(uid) {
   return "color-input-" + uid;
 }
 
-function generateParticleColorInput(inputId) {
+function generateParticleColorInput(inputId, color) {
   let container = document.createElement("div");
   let input = document.createElement("input");
   input.id = inputId;
   input.setAttribute("type", "color");
-  input.setAttribute("value", "#284695");
+  input.setAttribute("value", color ?? "#abcdef");
 
   let label = document.createElement("label");
   label.setAttribute("for", inputId);
@@ -276,7 +288,7 @@ function generateParticleColorInput(inputId) {
   return container;
 }
 
-function generateParticleColorFrequencyInput(sizeId, uid) {
+function generateParticleColorFrequencyInput(sizeId, uid, frequency) {
   let container = document.createElement("div");
   let input = document.createElement("input");
   let inputId = "frequency-color-" + uid;
@@ -284,7 +296,7 @@ function generateParticleColorFrequencyInput(sizeId, uid) {
   input.setAttribute("type", "range");
   input.setAttribute("min", "1");
   input.setAttribute("max", "100");
-  input.setAttribute("value", "100");
+  input.setAttribute("value", frequency ?? "100");
   input.dataset.color_input = sizeId;
 
   let label = document.createElement("label");
@@ -321,4 +333,109 @@ function handleWindowClick(event) {
   event.target.previousElementSibling.previousElementSibling.remove();
   event.target.previousElementSibling.remove();
   event.target.remove();
+}
+
+function createConfigurationContent() {
+  const sizes = [];
+  const particleSizesInput = document.getElementById("size-frequency-inputs");
+  if (!particleSizesInput) return;
+
+  const frequencyInputs =
+    particleSizesInput.querySelectorAll("input[type=range]");
+  for (const frequencyInput of frequencyInputs) {
+    let sizeValueInput = document.getElementById(
+      frequencyInput.dataset.size_input
+    );
+    const range = {
+      maxValue: frequencyInput.value,
+      size: sizeValueInput.value,
+    };
+
+    sizes.push(range);
+  }
+
+  const colors = [];
+  const particleColorsInput = document.getElementById("color-frequency-inputs");
+  if (!particleColorsInput) return;
+
+  const colorInputs = particleColorsInput.querySelectorAll("input[type=range]");
+  for (const colorInput of colorInputs) {
+    let colorValueInput = document.getElementById(
+      colorInput.dataset.color_input
+    );
+    const range = {
+      maxValue: colorInput.value,
+      color: colorValueInput.value,
+    };
+
+    colors.push(range);
+  }
+
+  let config = {
+    sizes: sizes,
+    colors: colors,
+    width: document.getElementById("input_width").value,
+    height: document.getElementById("input_height").value,
+    particleCount: document.getElementById("input_count_particles").value,
+    fillRatio: document.getElementById("fillRatioInput").value,
+    borderMode: document.getElementById("borderMode").value,
+  };
+
+  return JSON.stringify(config);
+}
+
+function download(content, mimeType, filename) {
+  const a = document.createElement("a"); // Create "a" element
+  const blob = new Blob([content], { type: mimeType }); // Create a blob (file-like object)
+  const url = URL.createObjectURL(blob); // Create an object URL from blob
+  a.setAttribute("href", url); // Set "a" element link
+  a.setAttribute("download", filename); // Set download filename
+  a.click(); // Start downloading
+}
+
+function downloadConfiguration() {
+  const mimeType = "application/json";
+  let content = createConfigurationContent();
+  download(content, mimeType, "config_ParticleGenerator");
+}
+
+function loadSavedConfiguration() {
+  const fileInput = document.getElementById("configurationUploadInput");
+  if (!fileInput || fileInput.files.length < 1) return;
+
+  const fileToLoad = fileInput.files[0];
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    applySavedConfiguration(JSON.parse(e.target.result));
+  };
+  reader.readAsBinaryString(fileToLoad);
+}
+
+function applySavedConfiguration(configuration) {
+  if (!configuration || !"sizes" in configuration || !"colors" in configuration)
+    return;
+
+  let sizeInputsCointainer = document.getElementById("size-frequency-inputs");
+  if (!sizeInputsCointainer) return;
+
+  let colorInputsCointainer = document.getElementById("color-frequency-inputs");
+  if (!colorInputsCointainer) return;
+
+  sizeInputsCointainer.replaceChildren();
+  colorInputsCointainer.replaceChildren();
+
+  for (const particleSize of configuration.sizes) {
+    addParticleSizeInput(particleSize.size, particleSize.maxValue);
+  }
+
+  for (const particleColor of configuration.colors) {
+    addParticleColorInput(particleColor.color, particleColor.maxValue);
+  }
+
+  document.getElementById("input_width").value = configuration.width;
+  document.getElementById("input_height").value = configuration.height;
+  document.getElementById("input_count_particles").value =
+    configuration.particleCount;
+  document.getElementById("fillRatioInput").value = configuration.fillRatio;
+  document.getElementById("borderMode").value = configuration.borderMode;
 }
