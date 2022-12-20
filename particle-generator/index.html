@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Partikel-Generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <h1>Partikel-Generator</h1>
+    <div class="flex-container">
+      <div>
+        <h2>Generierte Partikel</h2>
+        <div style="border: 1px solid black; padding: 10px">
+          <div
+            style="width: 219mm; height: 297mm"
+            id="particlesContainer"
+          ></div>
+        </div>
+      </div>
+      <div id="controls">
+        <h2>Einstellungen</h2>
+        <h3>Grundlegende Einstellungen</h3>
+        <div class="grid-container-2">
+          <label for="input_width">Breite (mm):</label>
+          <input
+            type="number"
+            value="219"
+            placeholder="Breite in mm"
+            id="input_width"
+          />
+          <label for="input_height">Höhe (mm):</label>
+          <input
+            type="number"
+            value="297"
+            placeholder="Höhe in mm"
+            id="input_height"
+          />
+          <label for="input_count_particles">Anzahl der Partikel:</label>
+          <input
+            type="number"
+            value="10"
+            placeholder="Anzahl Partikel"
+            id="input_count_particles"
+          />
+        </div>
+        <h3>Größen der Partikel</h3>
+        <div class="grid-container" id="size-frequency-inputs">
+          <div>
+            <label for="size-input-1">Größe (mm):</label
+            ><input id="size-input-1" type="number" value="30" />
+          </div>
+          <div>
+            <label for="frequency-size-1">Häufigkeit:</label
+            ><input
+              type="range"
+              min="1"
+              max="100"
+              value="33"
+              id="frequency-size-1"
+              data-size_input="size-input-1"
+            />
+          </div>
+          <button type="button" class="deleteInput">Löschen</button>
+          <div>
+            <label for="size-input-2">Größe (mm):</label
+            ><input id="size-input-2" type="number" value="17" />
+          </div>
+          <div>
+            <label for="frequency-size-2">Häufigkeit:</label
+            ><input
+              type="range"
+              min="1"
+              max="100"
+              value="66"
+              id="frequency-size-2"
+              data-size_input="size-input-2"
+            />
+          </div>
+          <button type="button" class="deleteInput">Löschen</button>
+          <div>
+            <label for="size-input-3">Größe (mm):</label
+            ><input id="size-input-3" type="number" value="10" />
+          </div>
+          <div>
+            <label for="frequency-size-3">Häufigkeit:</label
+            ><input
+              type="range"
+              min="1"
+              max="100"
+              value="100"
+              id="frequency-size-3"
+              data-size_input="size-input-3"
+            />
+          </div>
+          <button type="button" class="deleteInput">Löschen</button>
+        </div>
+        <h3>Farben der Partikel</h3>
+        <div class="grid-container" id="color-frequency-inputs">
+          <div>
+            <label for="color-input-1">Farbe:</label
+            ><input id="color-input-1" type="color" value="#df0200" />
+          </div>
+          <div>
+            <label for="frequency-color-1">Häufigkeit:</label
+            ><input
+              type="range"
+              min="1"
+              max="100"
+              value="100"
+              id="frequency-color-1"
+              data-color_input="color-input-1"
+            />
+          </div>
+          <button type="button" class="deleteInput">Löschen</button>
+          <div>
+            <label for="color-input-2">Farbe:</label
+            ><input id="color-input-2" type="color" value="#fb8a04" />
+          </div>
+
+          <div>
+            <label for="frequency-color-2">Häufigkeit:</label
+            ><input
+              type="range"
+              min="1"
+              max="100"
+              value="100"
+              id="frequency-color-2"
+              data-color_input="color-input-2"
+            />
+          </div>
+          <button type="button" class="deleteInput">Löschen</button>
+          <div>
+            <label for="color-input-3">Farbe:</label
+            ><input id="color-input-3" type="color" value="#fef601" />
+          </div>
+
+          <div>
+            <label for="frequency-color-3">Häufigkeit:</label
+            ><input
+              type="range"
+              min="1"
+              max="100"
+              value="100"
+              id="frequency-color-3"
+              data-color_input="color-input-3"
+            />
+          </div>
+          <button type="button" class="deleteInput">Löschen</button>
+
+          <div>
+            <label for="color-input-4">Farbe:</label
+            ><input id="color-input-4" type="color" value="#03e4c6" />
+          </div>
+          <div>
+            <label for="frequency-color-4">Häufigkeit:</label
+            ><input
+              type="range"
+              min="1"
+              max="100"
+              value="100"
+              id="frequency-color-4"
+              data-color_input="color-input-4"
+            />
+          </div>
+          <button type="button" class="deleteInput">Löschen</button>
+
+          <div>
+            <label for="color-input-5">Farbe:</label
+            ><input id="color-input-5" type="color" value="#00d5f1" />
+          </div>
+          <div>
+            <label for="frequency-color-5">Häufigkeit:</label
+            ><input
+              type="range"
+              min="1"
+              max="100"
+              value="100"
+              id="frequency-color-5"
+              data-color_input="color-input-5"
+            />
+          </div>
+          <button type="button" class="deleteInput">Löschen</button>
+
+          <div>
+            <label for="color-input-6">Farbe:</label
+            ><input id="color-input-6" type="color" value="#067af3" />
+          </div>
+          <div>
+            <label for="frequency-color-6">Häufigkeit:</label
+            ><input
+              type="range"
+              min="1"
+              max="100"
+              value="100"
+              id="frequency-color-6"
+              data-color_input="color-input-6"
+            />
+          </div>
+          <button type="button" class="deleteInput">Löschen</button>
+
+          <div>
+            <label for="color-input-7">Farbe:</label
+            ><input id="color-input-7" type="color" value="#9297ea" />
+          </div>
+          <div>
+            <label for="frequency-color-7">Häufigkeit:</label
+            ><input
+              type="range"
+              min="1"
+              max="100"
+              value="100"
+              id="frequency-color-7"
+              data-color_input="color-input-7"
+            />
+          </div>
+          <button type="button" class="deleteInput">Löschen</button>
+        </div>
+
+        <h3>Aktionen</h3>
+        <button type="button" onclick="addParticleSizeInput()">
+          Größe hinzufügen
+        </button>
+        <button type="button" onclick="addParticleColorInput()">
+          Farbe hinzufügen
+        </button>
+        <label for="borderMode">Berechnung der Rahmengrößen:</label
+        ><select name="borderMode" id="borderMode">
+          <option value="linear">linear</option>
+          <option value="sqrt">Wurzel</option>
+        </select>
+        <button type="button" onclick="generateParticles()">
+          Partikel generieren
+        </button>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

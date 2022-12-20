@@ -1,0 +1,30 @@
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+#particlesContainer {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.particle {
+  border: 1.5mm solid;
+  border-top-right-radius: 20%;
+  border-bottom-left-radius: 20%;
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.grid-container {
+  gap: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+}
+
+.grid-container-2 {
+  gap: 1em;
+  display: grid;
+  grid-template-columns: auto auto;
+}
