@@ -235,15 +235,16 @@ function getRandomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 function handleWindowClick(event) {
+    const eventTarget = event.target;
     if (!event.target ||
-        event.target.type !== "button" ||
-        !event.target.classList.contains("deleteInput"))
+        eventTarget.type !== "button" ||
+        !eventTarget.classList.contains("deleteInput"))
         return;
-    if (event.target.parentElement.childElementCount <= 3)
+    if (eventTarget.parentElement.childElementCount <= 3)
         return;
-    event.target.previousElementSibling.previousElementSibling.remove();
-    event.target.previousElementSibling.remove();
-    event.target.remove();
+    eventTarget.previousElementSibling.previousElementSibling.remove();
+    eventTarget.previousElementSibling.remove();
+    eventTarget.remove();
 }
 function createConfigurationContent() {
     const sizes = [];
@@ -254,8 +255,8 @@ function createConfigurationContent() {
     for (const frequencyInput of frequencyInputs) {
         let sizeValueInput = document.getElementById(frequencyInput.dataset.size_input);
         const range = {
-            maxValue: frequencyInput.value,
-            size: sizeValueInput.value,
+            maxIndex: parseInt(frequencyInput.value),
+            size: parseInt(sizeValueInput.value),
         };
         sizes.push(range);
     }
@@ -267,7 +268,7 @@ function createConfigurationContent() {
     for (const colorInput of colorInputs) {
         let colorValueInput = document.getElementById(colorInput.dataset.color_input);
         const range = {
-            maxValue: colorInput.value,
+            maxIndex: parseInt(colorInput.value),
             color: colorValueInput.value,
         };
         colors.push(range);
@@ -275,8 +276,8 @@ function createConfigurationContent() {
     let config = {
         sizes: sizes,
         colors: colors,
-        width: document.getElementById("input_width").value,
-        height: document.getElementById("input_height").value,
+        canvasWidth: document.getElementById("input_width").value,
+        canvasHeight: document.getElementById("input_height").value,
         particleCount: document.getElementById("input_count_particles").value,
         fillRatio: document.getElementById("fillRatioInput").value,
         borderMode: document.getElementById("borderMode").value,
@@ -303,7 +304,8 @@ function loadSavedConfiguration() {
     const fileToLoad = fileInput.files[0];
     const reader = new FileReader();
     reader.onload = (e) => {
-        applySavedConfiguration(JSON.parse(e.target.result));
+        // e.target.result may be an ArrayBuffer, which needs to be converted to string first
+        applySavedConfiguration(JSON.parse(e.target.result.toString()));
     };
     reader.readAsBinaryString(fileToLoad);
 }
@@ -319,13 +321,13 @@ function applySavedConfiguration(configuration) {
     sizeInputsCointainer.replaceChildren();
     colorInputsCointainer.replaceChildren();
     for (const particleSize of configuration.sizes) {
-        addParticleSizeInput(particleSize.size, particleSize.maxValue);
+        addParticleSizeInput(particleSize.size, particleSize.maxIndex);
     }
     for (const particleColor of configuration.colors) {
-        addParticleColorInput(particleColor.color, particleColor.maxValue);
+        addParticleColorInput(particleColor.color, particleColor.maxIndex);
     }
-    document.getElementById("input_width").value = configuration.width;
-    document.getElementById("input_height").value = configuration.height;
+    document.getElementById("input_width").value = configuration.canvasWidth;
+    document.getElementById("input_height").value = configuration.canvasHeight;
     document.getElementById("input_count_particles").value =
         configuration.particleCount;
     document.getElementById("fillRatioInput").value = configuration.fillRatio;

@@ -324,23 +324,24 @@ function getRandomInteger(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function handleWindowClick(event: any): void {
+function handleWindowClick(event: Event): void {
+  const eventTarget = event.target as HTMLInputElement;
   if (
     !event.target ||
-    event.target.type !== "button" ||
-    !event.target.classList.contains("deleteInput")
+    eventTarget.type !== "button" ||
+    !eventTarget.classList.contains("deleteInput")
   )
     return;
 
-  if (event.target.parentElement.childElementCount <= 3) return;
+  if (eventTarget.parentElement.childElementCount <= 3) return;
 
-  event.target.previousElementSibling.previousElementSibling.remove();
-  event.target.previousElementSibling.remove();
-  event.target.remove();
+  eventTarget.previousElementSibling.previousElementSibling.remove();
+  eventTarget.previousElementSibling.remove();
+  eventTarget.remove();
 }
 
 function createConfigurationContent(): string {
-  const sizes = [];
+  const sizes: ConfigurationParticleSizes[] = [];
   const particleSizesInput = document.getElementById("size-frequency-inputs");
   if (!particleSizesInput) return;
 
@@ -350,15 +351,15 @@ function createConfigurationContent(): string {
     let sizeValueInput = document.getElementById(
       frequencyInput.dataset.size_input
     ) as HTMLInputElement;
-    const range = {
-      maxValue: frequencyInput.value,
-      size: sizeValueInput.value,
+    const range: ConfigurationParticleSizes = {
+      maxIndex: parseInt(frequencyInput.value),
+      size: parseInt(sizeValueInput.value),
     };
 
     sizes.push(range);
   }
 
-  const colors = [];
+  const colors: ConfigurationParticleColors[] = [];
   const particleColorsInput = document.getElementById("color-frequency-inputs");
   if (!particleColorsInput) return;
 
@@ -367,22 +368,22 @@ function createConfigurationContent(): string {
     let colorValueInput = document.getElementById(
       colorInput.dataset.color_input
     ) as HTMLInputElement;
-    const range = {
-      maxValue: colorInput.value,
+    const range: ConfigurationParticleColors = {
+      maxIndex: parseInt(colorInput.value),
       color: colorValueInput.value,
     };
 
     colors.push(range);
   }
 
-  let config = {
+  let config: Configuration = {
     sizes: sizes,
     colors: colors,
-    width: (document.getElementById("input_width") as HTMLInputElement).value,
-    height: (document.getElementById("input_height") as HTMLInputElement).value,
+    canvasWidth: (document.getElementById("input_width") as HTMLInputElement).value,
+    canvasHeight: (document.getElementById("input_height") as HTMLInputElement).value,
     particleCount: (document.getElementById("input_count_particles") as HTMLInputElement).value,
     fillRatio: (document.getElementById("fillRatioInput") as HTMLInputElement).value,
-    borderMode: (document.getElementById("borderMode") as HTMLInputElement).value,
+    borderMode: (document.getElementById("borderMode") as HTMLInputElement).value as borderMode,
   };
 
   return JSON.stringify(config);
@@ -409,13 +410,15 @@ function loadSavedConfiguration(): void {
 
   const fileToLoad = fileInput.files[0];
   const reader = new FileReader();
-  reader.onload = (e: any) => {
-    applySavedConfiguration(JSON.parse(e.target.result));
+  reader.onload = (e) => {
+
+    // e.target.result may be an ArrayBuffer, which needs to be converted to string first
+    applySavedConfiguration(JSON.parse(e.target.result.toString()));
   };
   reader.readAsBinaryString(fileToLoad);
 }
 
-function applySavedConfiguration(configuration: any): void {
+function applySavedConfiguration(configuration: Configuration): void {
   if (!configuration || !("sizes" in configuration) || !("colors" in configuration))
     return;
 
@@ -429,15 +432,15 @@ function applySavedConfiguration(configuration: any): void {
   colorInputsCointainer.replaceChildren();
 
   for (const particleSize of configuration.sizes) {
-    addParticleSizeInput(particleSize.size, particleSize.maxValue);
+    addParticleSizeInput(particleSize.size, particleSize.maxIndex);
   }
 
   for (const particleColor of configuration.colors) {
-    addParticleColorInput(particleColor.color, particleColor.maxValue);
+    addParticleColorInput(particleColor.color, particleColor.maxIndex);
   }
 
-  (document.getElementById("input_width") as HTMLInputElement).value = configuration.width;
-  (document.getElementById("input_height") as HTMLInputElement).value = configuration.height;
+  (document.getElementById("input_width") as HTMLInputElement).value = configuration.canvasWidth;
+  (document.getElementById("input_height") as HTMLInputElement).value = configuration.canvasHeight;
   (document.getElementById("input_count_particles") as HTMLInputElement).value =
     configuration.particleCount;
   (document.getElementById("fillRatioInput") as HTMLInputElement).value = configuration.fillRatio;
