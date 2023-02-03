@@ -1,63 +1,5 @@
 const buttons = [
     {
-        heading: "TSW3",
-        buttons: [
-            {
-                caption: "Release Date",
-                text: "Release Date for TSW 3 is 06th Sept. Deluxe Edition can be played 4 days early, 02nd Sept."
-            },
-            {
-                caption: "FAQ Link",
-                text: "https://dovetailgames.freshdesk.com/support/solutions/articles/80001033452-train-sim-world-3-faq"
-            },
-            {
-                caption: "Q&A Link",
-                text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/tsw2-roadmap-7-june-2022"
-            },
-            {
-                caption: "Preview Dates - Pt. 1",
-                text: "Preview Dates: Thursday, August 18th – Kassel – Würzburg Preview || Tuesday, August 23rd – Training Center"
-            },
-            {
-                caption: "Preview Dates - Pt. 2",
-                text: "Thursday, August 25th – Southeastern High Speed Extended Preview || Thursday, September 1st – Cajon Pass Preview"
-            }
-        ]
-    },
-    {
-        heading: "Pricing",
-        buttons: [
-            {
-                caption: "Deluxe Edition",
-                text: "Deluxe Edition (Pre-order Discount): £49.99(£44.99) | €59.99(€53.99) | $59.99 ($53.99)"
-            },
-            {
-                caption: "Standard Edition",
-                text: "Standard Edition: £39.99 | €44.99 | $49.99"
-            },
-            {
-                caption: "UK Starter Pack",
-                text: "UK Starter Pack: £29.99 | €35.99 | $39.99"
-            },
-            {
-                caption: "US Starter Pack",
-                text: "US Starter Pack: £29.99 | €35.99 | $39.99"
-            },
-            {
-                caption: "German Starter Pack",
-                text: "German Starter Pack: £29.99 | €35.99 | $39.99"
-            },
-            {
-                caption: "Spirit of Steam Starter Pack",
-                text: "Spirit of Steam Starter Pack: £29.99 | €35.99 | $39.99"
-            },
-            {
-                caption: "Summary",
-                text: "Prices: Deluxe Edition (Pre-order Discount): £49.99(£44.99) | €59.99(€53.99) | $59.99 ($53.99) || Standard Edition: £39.99 | €44.99 | $49.99 || Starter Packs: £29.99 | €35.99 | $39.99"
-            }
-        ]
-    },
-    {
         heading: "Roadmap links - TSW3",
         buttons: [
             {
@@ -68,19 +10,6 @@ const buttons = [
                 caption: "Part 2",
                 text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/tsw-roadmap-part-2-10-08",
             },
-        ]
-    },
-    {
-        heading: "Spirit of Steam",
-        buttons: [
-            {
-                caption: "Arriving soon article",
-                text: "https://live.dovetailgames.com/live/train-sim-world/articles/article/spirit-of-steam-arriving-soon"
-            },
-            {
-                caption: "DevBlog (YouTube)",
-                text: "https://www.youtube.com/watch?v=x-4YskHkDsA"
-            }
         ]
     },
     {
@@ -125,10 +54,6 @@ const buttons = [
                 text: "Please note: This is a TS2022 stream. The streamer will not be answering questions regarding TSW2 content"
             },
             {
-                caption: "TS 2022 Announcement",
-                text: "https://forums.dovetailgames.com/threads/announcing-train-simulator-2022.44829/"
-            },
-            {
                 caption: "TS Classic Announcement",
                 text: "https://live.dovetailgames.com/live/train-simulator/articles/article/ts-classic-out-now"
             }
@@ -160,8 +85,20 @@ const buttons = [
         heading: "Steam",
         buttons: [
             {
-                caption: "no !drop",
-                text: "writing \"!drop\" doesn't do anything, you get emotes by simply watching the stream"
+                caption: "!drop is spam",
+                text: "Please note: \"!drop\" is considered spam and will be deleted"
+            },
+            {
+                caption: "todays drops are backgrounds",
+                text: "Todays drops are 3 static backgrounds and they will drop after 10 minutes"
+            },
+            {
+                caption: "todays drops are emojis",
+                text: "Todays drops are 3 emojis and they will drop after 10 minutes"
+            },
+            {
+                caption: "keep chat in english",
+                text: "Please keep the chat in english, thank you"
             },
             {
                 caption: "No points",
