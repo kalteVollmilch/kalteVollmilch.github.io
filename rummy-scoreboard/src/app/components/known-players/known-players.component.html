@@ -1,0 +1,7 @@
+<h2>Spieler</h2>
+
+<ul>
+    <li *ngFor="let player of this.allPlayers$ | async">
+    {{ player.name }}
+    </li>
+</ul>

@@ -1,0 +1,7 @@
+<h2>Neuer Spieler</h2>
+
+<form [formGroup]="newPlayerForm">
+    <label for="name">Name: </label>
+    <input id="name" type="text" formControlName="name">
+    <button type="submit" [disabled]="this.newPlayerForm.invalid" (click)="this.addPlayer()">Spieler hinzufügen</button>
+</form>

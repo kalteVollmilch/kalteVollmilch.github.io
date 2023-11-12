@@ -1,0 +1,21 @@
+<ng-container *ngIf="this.player">
+    <div>
+        {{player.name}}
+    </div>
+    <div>
+        <form [formGroup]="scoreForm">
+            <label for="score-{{ player.name }}">Punkte</label>
+            <input id="score-{{ player.name}}" type="number" min="0" formControlName="score">
+        </form>
+    </div>
+    <div>
+        <b>Punkte gesamt: {{ this.sum }}</b>
+    </div>
+    <div>
+        <ul *ngIf="player.scores.length > 0">
+            <li *ngFor="let score of player.scores">
+                {{ score }}
+            </li>
+        </ul>
+    </div>
+</ng-container>

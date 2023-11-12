@@ -1,0 +1,13 @@
+<h2>Aktuelles Spiel</h2>
+<form>
+    <div class="flex-wrapper">
+        <div *ngFor="let player of allPlayers$ | async" class="player-col">
+            <app-player-scores [player]="player"></app-player-scores>
+        </div>
+        <div>
+            <button type="button" (click)="this.saveScores()">Runde beenden</button>
+        </div>
+    </div>
+</form>
+<button type="button" (click)="this.downloadScores()">Daten herunterladen</button>
+<button type="file">Daten laden</button>
